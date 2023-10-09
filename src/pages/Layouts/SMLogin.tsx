@@ -20,14 +20,31 @@ export default function SMLogin() {
 
    const navigate = useNavigate();
   let LoginUser = () => {
+    model.role= "student"
     console.log(model);
     fbLogin(model)
       .then((res: any) => {
         console.log(res);
         // dispatch(add({...res}))
+if(model.role == "student"){
 
-        navigate("/chatbox")
-      })
+  navigate("/studentdashboard")
+}else if(model.role == "teacher"){
+  navigate("/teacherdashboard")
+
+}
+else if(model.role == "institute"){
+  navigate("/institutedashboard")
+  
+}else if(model.role == "admin"){
+  navigate("/admindashboard")
+
+}
+else{
+  navigate("/signup")
+  alert("Please Signup First")
+}
+})
       .catch((err) => {
         console.log(err);
       });

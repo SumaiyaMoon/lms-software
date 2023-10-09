@@ -1,7 +1,11 @@
+import { Box, Grid } from "@mui/material";
+
 export default function ActivationPayment(){
     return(
         <>
-        <h1>ActivationPayment</h1>
+   <Box className='d-flex align-items-center justify-content-center'>
+    Activation Payment
+   </Box>
         </>
     )
 }
