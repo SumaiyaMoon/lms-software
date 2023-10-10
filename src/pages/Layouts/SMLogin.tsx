@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import { fbAuth, fbLogin } from "../../config/firebase/firebase-methods";
 import SMInput from "../../components/SMInput";
@@ -20,23 +19,26 @@ export default function SMLogin() {
 
    const navigate = useNavigate();
   let LoginUser = () => {
-    model.role= "student"
     console.log(model);
     fbLogin(model)
       .then((res: any) => {
         console.log(res);
         // dispatch(add({...res}))
-if(model.role == "student"){
+        
+if(model.role == ("student" || "Student")){
 
   navigate("/studentdashboard")
-}else if(model.role == "teacher"){
+
+}else if(model.role == ("teacher" || "Teacher")){
+
   navigate("/teacherdashboard")
 
 }
-else if(model.role == "institute"){
+else if(model.role == ("institute" || "Institute")){
+
   navigate("/institutedashboard")
   
-}else if(model.role == "admin"){
+}else if(model.role == ("admin" || "Admin")){
   navigate("/admindashboard")
 
 }
@@ -90,6 +92,16 @@ console.log(res);
               label="Password"
               type="password"
               onChange={(e: any) => fillModel("password", e.target.value)}
+              className="py-2"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <SMInput
+              value={model.role}
+              name="role"
+              label="Role"
+              type="text"
+              onChange={(e: any) => fillModel("role", e.target.value)}
               className="py-2"
             />
           </Grid>

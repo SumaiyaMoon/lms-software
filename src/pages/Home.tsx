@@ -14,12 +14,13 @@ return(
         <Typography className="py-2" variant="h2">LMS</Typography>
         <Typography className="py-2" variant="h4">Learning Management System</Typography>
         <div className="d-flex align-items-center justify-content-center gap-2 m-2 ">
-            <SMButton onClick={()=>{navigate('/login')}} label="Login" className="text-white rounded"/>
-            <SMButton onClick={()=>{navigate('/signup')}} label="Sign Up" className="text-white rounded"/>
+            <SMButton onClick={()=>{navigate('/login')}} label="Login to Dashboard" className="text-white rounded"/>
+            <SMButton onClick={()=>{navigate('/signup')}} label="New here? Sign Up" className="text-white rounded"/>
         </div>
     </div>
 </div>
     </div>
+
     </>
 )
 }

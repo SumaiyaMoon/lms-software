@@ -14,16 +14,7 @@ export default function SMSignUp() {
 
   const navigate = useNavigate();
 
-  let signUpUser = () => {
-    console.log(model);
-    fbSignUp(model)
-      .then((res) => {
-        navigate("/chatbox");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  
 
   return (
  <Box
@@ -37,58 +28,41 @@ export default function SMSignUp() {
     >
       <Paper className="paperColor" elevation={3} sx={{ p: 3, maxWidth: 400 }}>
         <Typography variant="h6" className="fw-bold" gutterBottom>
-          SignUp
+          Select an option to Sign Up,
         </Typography>
         <form>
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <SMInput
-                value={model.username}
-                name="username"
-                label="User Name"
-                type="text"
-                onChange={(e: any) => fillModel("username", e.target.value)}
+              <SMButton
+                type="button"
+                label="SignUp as Student"
+                onClick={()=>{navigate("/studentreg")}}
                 className="py-2"
               />
-              <SMInput
-                value={model.email}
-                name="email"
-                label="Email"
-                type="email"
-                onChange={(e: any) => fillModel("email", e.target.value)}
+            </Grid>
+            <Grid item xs={12}>
+              <SMButton
+                type="button"
+                label="SignUp as Teacher"
+                onClick={()=>{navigate("/teacherreg")}}
+                className="py-2"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <SMButton
+                type="button"
+                label="SignUp as Institute"
+                onClick={()=>{navigate("/institutereg")}}
                 className="py-2"
               />
             </Grid>
 
-            <Grid item xs={12}>
-              <SMInput
-                value={model.password}
-                name="password"
-                label="Password"
-                type="password"
-                onChange={(e: any) => fillModel("password", e.target.value)}
-                className="py-2"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <SMInput
-                name="password"
-                label="Confirm Password"
-                type="password"
-                className="py-2"
-              />
-            </Grid>
+          
             <Grid
               item
               xs={12}
               className="d-flex justigy-content-between align-items-center gap-5"
             >
-              <SMButton
-                type="button"
-                label="SignUp"
-                onClick={signUpUser}
-                className="py-2"
-              />
               <Typography className="py-2">
                 Already Signed Up? <Link to="/Login" >Login</Link>
               </Typography>

@@ -287,7 +287,9 @@ export default function SMDashboard(props: SMDashboardProps) {
            {title}
           </Typography>
           <div className="text-center ms-auto">
-             <SMButton type={"button"} className='bg-danger' label={"Logout"} onClick={()=>{}} />
+             <SMButton type={"button"} className='bg-danger' label={"Logout"} onClick={()=>{
+              navigate("/login")
+             }} />
            </div>
         </Toolbar>
       </AppBar>
