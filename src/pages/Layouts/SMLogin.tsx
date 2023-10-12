@@ -16,11 +16,11 @@ export default function SMLogin() {
     model[key] = val;
     setModel({ ...model });
   };
-
+const userRole = "student" || "institute" || "admin" 
    const navigate = useNavigate();
   let LoginUser = () => {
     console.log(model);
-    fbLogin(model)
+    fbLogin(model, userRole)
       .then((res: any) => {
         console.log(res);
         // dispatch(add({...res}))

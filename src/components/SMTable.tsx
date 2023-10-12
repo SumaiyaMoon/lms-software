@@ -1,39 +1,70 @@
-import React from 'react';
+// import React from 'react';
 
-type TableColumn = {
-  header: string;
-  accessor: string;
-};
+// type TableColumn = {
+//   header: string;
+//   accessor: string;
+// };
 
-type TableProps = {
-  data: any[];
-  columns: TableColumn[];
-};
+// type TableProps = {
+//   data: any[];
+//   columns: TableColumn[];
+// };
 
-export default function SMTable({ data, columns }: TableProps) {
+// export default function SMTable({ data, columns }: TableProps) {
+//   return (
+//     <table>
+//       <thead>
+//         <tr>
+//           {columns.map((column, index) => (
+//             <th key={index}>{column.header}</th>
+//           ))}
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {data.map((row, rowIndex) => (
+//           <tr key={rowIndex}>
+//             {columns.map((column, colIndex) => (
+//               <td key={colIndex}>{row[column.accessor]}</td>
+//             ))}
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   );
+// }
+
+type SMTableProps = {
+  label: string;
+  datasource: any[];
+  cols: any[];
+  children: any
+}
+export default function SMTable(props: SMTableProps) {
+  const { label, datasource, cols, children } = props;
   return (
-    <table>
-      <thead>
-        <tr>
-          {columns.map((column, index) => (
-            <th key={index}>{column.header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {columns.map((column, colIndex) => (
-              <td key={colIndex}>{row[column.accessor]}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+      <div>
+          <table className="table table-striped w-100 table-bordered border-success">
+              <thead>
+                  <tr>
+                      {cols.map((x, i) => (
+                          <th>{x.heading}</th>
+                      ))}
+                  </tr>
+              </thead>
+              <tbody>
+                  {/* {datasource.map((row, i) => (
+                      <tr>
+                          {cols.map((col, ind) => (
+                              <td>{row[col.key]}</td>
+                          ))}
+                      </tr>
+                  ))} */}
+{children}
+              </tbody>
+          </table>
+      </div>
   );
 }
-
-
 
 // usage
 

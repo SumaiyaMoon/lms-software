@@ -29,7 +29,7 @@ export default function SMInstituteReg() {
   let signUpUser = () => {
     model.isActive = true
     console.log(model);
-    fbSignUp(model)
+    fbSignUp(model,"institute")
     .then((res: any) => {
       console.log(res);
       // dispatch(add({...res}))

@@ -10,7 +10,7 @@ import {
   let auth = getAuth(app);
   let db = getDatabase(app);
   
-  export let fbLogin = (body: any) => {
+  export let fbLogin = (body: any, role?: any) => {
     return new Promise((resolve, reject) => {
       if (!body.email || !body.password) {
         reject("Email and Password is requied");
@@ -19,7 +19,7 @@ import {
           .then((res) => {
             let id = res.user.uid;
   
-            const reference = ref(db, `users/${id}`);
+            const reference = ref(db, `users/${role}/${id}`);
   
             onValue(reference, (data) => {
               if (data.exists()) {
@@ -35,7 +35,7 @@ import {
       }
     });
   };
-  export let fbSignUp = (body: any) => {
+  export let fbSignUp = (body: any, role?:any) => {
     return new Promise((resolve, reject) => {
       if (!body.email || !body.password) {
         reject("Email and Password is requied");
@@ -44,7 +44,7 @@ import {
           .then((res) => {
             let id = res.user.uid;
             body.id = id;
-            const reference = ref(db, `users/${id}`);
+            const reference = ref(db, `users/${role}/${id}`);
   
             set(reference, body).then((user) => {
               resolve("User Created Successfully");

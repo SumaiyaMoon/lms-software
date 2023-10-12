@@ -9,10 +9,17 @@ import StudentManagement from "./AdminScreens/StudentManagement";
 import TeacherManagement from "./AdminScreens/TeacherManagement";
 import SMDashboard from "../../Layouts/SMDashboard";
 import { Box, Grid } from "@mui/material";
+import InstituteList from "./AdminScreens/InstituteList";
 
 export default function AdminDashboard(){
 
     const pages = [
+     
+      {
+        name: "InstituteList",
+        route: "instituteList",
+        // icon: <AllInboxIcon />,
+      },
       {
         name: "Activation and Payment",
         route: "activationpayment",
@@ -64,6 +71,7 @@ export default function AdminDashboard(){
       </Grid>
     </Grid>
         <Routes>
+            <Route path="instituteList" element={<InstituteList/>} />
             <Route path="activationpayment" element={<ActivationPayment/>} />
             <Route path="coursemanagement" element={<CourseManagement/>} />
             <Route path="financialmanagement" element={<FinancialManagement/>} />

@@ -5,6 +5,7 @@ import SMInput from "../../../components/SMInput";
 import SMButton from "../../../components/SMButton";
 import { Box, Typography, Paper, Grid } from "@mui/material";
 import SMSelect from "../../../components/SMSelect";
+import SMDatePicker from "../../../components/SMDatePicker";
 
 export default function SMStudentReg() {
 
@@ -13,22 +14,32 @@ export default function SMStudentReg() {
     model[key] = val;
     setModel({ ...model });
   };
-  const [typeOptions, setTypeOptions] = useState(["School", "College", "University", "Institute"])
-  const [selectedValue, setSelectedValue] = useState(typeOptions[0]);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [gender, setGender] = useState("Male");
   const [role, setRole] = useState("None selected");
+  const[qualification, setQualification] = useState(["Matric","Intermediate","Graduate","Masters"])
+  const [lastqual, setLastQual] = useState(qualification[2]);
 
-const handleChange = (newValue: any) => {
-  setSelectedValue(newValue);
-};
+
 const handleRole = (newValue: any) => {
   setRole(newValue);
+};
+const handleLastQual = (newValue: any) => {
+  setLastQual(newValue);
+};
+const handleGender = (newValue: any) => {
+  setGender(newValue);
+};
+
+const handleDateChange = (date: any) => {
+  setSelectedDate(date);
 };
   const navigate = useNavigate();
 
   let signUpUser = () => {
     model.isActive = true
     console.log(model);
-    fbSignUp(model)
+    fbSignUp(model,"student")
     .then((res: any) => {
       console.log(res);
       // dispatch(add({...res}))
@@ -63,6 +74,62 @@ navigate("/login")
                 label="Student Name"
                 type="text"
                 onChange={(e: any) => fillModel("studentName", e.target.value)}
+                className="py-2"
+              />
+              </Grid>
+            <Grid item xs={6}>
+              <SMInput
+                value={model.studentFatherName}
+                name="studentFatherName"
+                label="Student Father Name"
+                type="text"
+                onChange={(e: any) => fillModel("studentFatherName", e.target.value)}
+                className="py-2"
+              />
+              </Grid>
+            <Grid item xs={6}>
+              <SMInput
+                value={model.studentCity}
+                name="studentCity"
+                label="Student City"
+                type="text"
+                onChange={(e: any) => fillModel("studentCity", e.target.value)}
+                className="py-2"
+              />
+              </Grid>
+            <Grid item xs={6}>
+              <SMInput
+                value={model.studentCountry}
+                name="studentCountry"
+                label="Student Country"
+                type="text"
+                onChange={(e: any) => fillModel("studentCountry", e.target.value)}
+                className="py-2"
+              />
+              </Grid>
+              <Grid item xs={6}>
+              <SMSelect
+                value={gender}
+                options={["Male","Female"]}
+                label="Gender"
+                onChange={(gender) => {fillModel("studentGender", gender)
+                handleGender(gender)
+                }}
+                className="py-2"
+              />
+              </Grid>
+              <Grid item xs={6}>
+                <SMDatePicker label="Date of Birth"  onChange={(DOB) => {fillModel("studentDOB", DOB)
+                handleDateChange(DOB)
+                }}/>
+              </Grid>
+            <Grid item xs={6}>
+              <SMInput
+                value={model.studentContact}
+                name="studentContact"
+                label="Contact"
+                type="number"
+                onChange={(e: any) => fillModel("studentContact", e.target.value)}
                 className="py-2"
               />
               </Grid>
@@ -106,6 +173,17 @@ navigate("/login")
                 label="Account Type"
                 onChange={(role) => {fillModel("role", role)
                 handleRole(role)
+                }}
+                className="py-2"
+              />
+              </Grid>
+              <Grid item xs={6}>
+              <SMSelect
+                value={lastqual}
+                options={qualification}
+                label="Last Qualification"
+                onChange={(lastqual) => {fillModel("lastQual", lastqual)
+                handleLastQual(lastqual)
                 }}
                 className="py-2"
               />
