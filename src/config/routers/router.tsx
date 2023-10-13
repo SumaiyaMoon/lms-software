@@ -12,6 +12,9 @@ import StudentDashboard from "../../pages/LMS/Institute/Students/StudentDashboar
 import SMStudentReg from "../../pages/Layouts/SMForms/SMStudentReg";
 import SMTeacherReg from "../../pages/Layouts/SMForms/SMTeacherReg";
 import SMInstituteReg from "../../pages/Layouts/SMForms/SMInstituteReg";
+import SMCourseReg from "../../pages/Layouts/SMForms/SMCourseReg";
+import SMQuizReg from "../../pages/Layouts/SMForms/SMQuizReg";
+import dashComp from "../../pages/dashcheck/dash";
 
 
 
@@ -29,11 +32,14 @@ export default function AppRouter() {
            <Route path="/studentreg" element={<SMStudentReg/>} />
            <Route path="/teacherreg" element={<SMTeacherReg/>} />
            <Route path="/institutereg" element={<SMInstituteReg/>} />
+           <Route path="/coursereg" element={<SMCourseReg/>} />
+           <Route path="/quizreg" element={<SMQuizReg/>} />
            {/* Protected Routes */}
            <Route path="admindashboard/*" element={<Protected Screen={AdminDashboard} />} />
            <Route path="institutedashboard/*" element={<Protected Screen={InstituteDashboard} />} />
            <Route path="teacherdashboard/*" element={<Protected Screen={TeacherDashboard} />} />
            <Route path="studentdashboard/*" element={<Protected Screen={StudentDashboard} />} />
+           <Route path="dashboard/*" element={<Protected Screen={dashComp} />} />
         </Routes>
       </Router>
     </>

@@ -55,66 +55,39 @@ let tableData =
         }}/>
             </div>
         <div className='d-flex align-items-center justify-content-around'>
-          {/* <SMTable label="Testing Data"
-            cols={
-              [
-                {
-                  heading: "Name",
-                  key: "instituteName",
-                },
-                {
-                  heading: "Logo",
-                  key: "logoImage",
-                },
-                {
-                  heading: "Campuses",
-                  key: "NoOfCampuses",
-                },
-                {
-                  heading: "Status",
-                  key: "Status",
-                },
-
-              ]
-            }
-            datasource={tableData}
-          /> */}
-          <SMTableContainer cols={[
-          {
-            heading: "Id",
-            key: "id",
-          },
-          {
-            heading: "Logo",
-            key: "Logo",
-          },
-          {
-            heading: "Institute Name",
-            key: "InstituteName",
-          },
-          
-          {
-            heading: "Number Of Campus",
-            key: "NumberOfCampus",
-          },
-          {
-            heading: "Active",
-            key: "Active",         
-          },
-        ]}>
-             {instituteList && instituteList.length > 0
-          ? instituteList.map((institute: any, i: number) => (  
-            <SMTableRow
-            key={i} 
-            Id={i+1}
-            Logo={institute.instituteLogo}
-            Name={institute.instituteName}
-            Number={institute.campuses}
-            Active="yes"
-            />  
-        )):null}
-
+        <SMTableContainer
+            cols={[
+              {
+                heading: "Id",
+                key: "id", // This should match the key in your student data
+              },
+              {
+                heading: "Name",
+                key: "instituteName", // This should match the key in your student data
+              },
+              {
+                heading: "Email",
+                key: "email", // This should match the key in your student data
+              },
+              {
+                heading: "Active",
+                key: "isActive", // This should match the key in your student data
+              },
+            ]}
+          >
+           {instituteList && instituteList.length > 0
+  ? instituteList.map((institute: any, i: number) => (
+      <SMTableRow
+        key={i}
+        Id={i + 1}
+        Name={institute.instituteName || "N/A"} // Handle empty instituteName
+        Email={institute.email || "N/A"} // Handle empty email
+        Active={institute.isActive ? "Yes" : "No"}
+      />
+    ))
+  : null}
           </SMTableContainer>
+          
           <div>
          
           </div>

@@ -8,10 +8,11 @@ type SMInputProps = {
   value?: string;
   name?: string;
   className?: string;
+  disabled?: any,
 };
 
 export default function SMInput(props: SMInputProps) {
-  const { label, onChange, type, value, name, className } = props;
+  const { label, onChange, type, value, name, className, disabled } = props;
 
   return (
     <div>
@@ -25,6 +26,7 @@ export default function SMInput(props: SMInputProps) {
         id={name}
         fullWidth
         className={className}
+        disabled={disabled}
       />
     </div>
   );

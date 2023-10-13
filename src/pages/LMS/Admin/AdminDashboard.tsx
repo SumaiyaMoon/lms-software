@@ -10,50 +10,51 @@ import TeacherManagement from "./AdminScreens/TeacherManagement";
 import SMDashboard from "../../Layouts/SMDashboard";
 import { Box, Grid } from "@mui/material";
 import InstituteList from "./AdminScreens/InstituteList";
+import SMTestDashboard from "../../Layouts/SMTestDashboard";
 
 export default function AdminDashboard(){
 
     const pages = [
      
       {
-        name: "InstituteList",
-        route: "instituteList",
+        text: "InstituteList",
+        link: "instituteList",
         // icon: <AllInboxIcon />,
       },
       {
-        name: "Activation and Payment",
-        route: "activationpayment",
+        text: "Activation and Payment",
+        link: "activationpayment",
         // icon: <AllInboxIcon />,
       },
       {
-        name: "Course Management",
-        route: "coursemanagement",
+        text: "Course Management",
+        link: "coursemanagement",
         // icon: <MessageIcon />,
       },
       {
-        name: "Financial Management",
-        route: "financialmanagement",
+        text: "Financial Management",
+        link: "financialmanagement",
         // icon: <Settings />,
       },
       {
-        name: "Institute Management",
-        route: "institutemanagement",
+        text: "Institute Management",
+        link: "institutemanagement",
       },
       {
-        name: "Registration Management",
-        route: "registrationmanagement",
+        text: "Registration Management",
+        link: "registrationmanagement",
       },
       {
-        name: "Resource Management",
-        route: "resourcemanagement",
+        text: "Resource Management",
+        link: "resourcemanagement",
       },
       {
-        name: "Student Management",
-        route: "studentmanagement",
+        text: "Student Management",
+        link: "studentmanagement",
       },
       {
-        name: "Teacher Management",
-        route: "teachermanagement",
+        text: "Teacher Management",
+        link: "teachermanagement",
       },
     
     ];
@@ -61,27 +62,26 @@ export default function AdminDashboard(){
 
     return(
         <>
-        <Box>
 
-        <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
-        <h1>AdminDashboard</h1>
-        <SMDashboard pages={pages} title="Admin Dashboard" onLogout={()=>{}} dashboard="admindashboard"/>
-        
-      </Grid>
-    </Grid>
+         <Box>
+        <SMTestDashboard menuItems={pages} >
+
         <Routes>
-            <Route path="instituteList" element={<InstituteList/>} />
-            <Route path="activationpayment" element={<ActivationPayment/>} />
-            <Route path="coursemanagement" element={<CourseManagement/>} />
-            <Route path="financialmanagement" element={<FinancialManagement/>} />
-            <Route path="institutemanagement" element={<InstituteManagement/>} />
-            <Route path="registrationmanagement" element={<RegistrationManagement/>} />
-            <Route path="resourcemanagement" element={<ResourceManagement/>} />
-            <Route path="studentmanagement" element={<StudentManagement/>} />
-            <Route path="teachermanagement" element={<TeacherManagement/>} />
+      <Route path="/instituteList" element={<InstituteList/>} />
+      <Route path="/activationpayment" element={<ActivationPayment/>} />
+      <Route path="/coursemanagement" element={<CourseManagement/>} />
+      <Route path="/financialmanagement" element={<FinancialManagement/>} />
+      <Route path="/institutemanagement" element={<InstituteManagement/>} />
+      <Route path="/registrationmanagement" element={<RegistrationManagement/>} />
+      <Route path="/resourcemanagement" element={<ResourceManagement/>} />
+      <Route path="/studentmanagement" element={<StudentManagement/>} />
+      <Route path="/teachermanagement" element={<TeacherManagement/>} />
+   
         </Routes>
-        </Box>
+        </SMTestDashboard>
+
+        
+      </Box>
         </>
     )
 }

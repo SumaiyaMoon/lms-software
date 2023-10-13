@@ -2,36 +2,34 @@ import { Route, Routes } from "react-router-dom";
 import { Box, Grid } from "@mui/material";
 import SMDashboard from "../../../Layouts/SMDashboard";
 import AssessmentCreation from "./AssessmentCreation";
-import CourseCreation from "./CourseCreation";
+import CourseCreation from "../../../Layouts/SMForms/SMCourseReg";
 import GradeBook from "./GradeBook";
 import TeacherProfile from "./TeacherProfile";
 import STCommunication from "../STCommunication";
+import SMTestDashboard from "../../../Layouts/SMTestDashboard";
 
 export default function TeacherDashboard(){
 
     const pages = [
       {
-        name: "Assessment Creation",
-        route: "assessmentcreation",
-        // icon: <AllInboxIcon />,
+        text: "Assessment Creation",
+        link: "assessmentcreation",
       },
       {
-        name: "Course Creation",
-        route: "coursecreation",
-        // icon: <MessageIcon />,
+        text: "Course Creation",
+        link: "coursecreation",
       },
       {
-        name: "Gradebook",
-        route: "gradebook",
-        // icon: <Settings />,
+        text: "Gradebook",
+        link: "gradebook",
       },
       {
-        name: "Teacher Profile",
-        route: "teacherprofile",
+        text: "Teacher Profile",
+        link: "teacherprofile",
       },
       {
-        name: "Communication",
-        route: "stcommunication",
+        text: "Communication",
+        link: "stcommunication",
       },
     
     ];
@@ -40,23 +38,19 @@ export default function TeacherDashboard(){
     return(
         <>
         <Box>
+        <SMTestDashboard menuItems={pages} >
 
-        <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
-        <h1>Teacher Dashboard</h1>
-        <SMDashboard pages={pages} title="Teacher Dashboard" onLogout={()=>{}} dashboard="teacherdashboard"/>
-        
-      </Grid>
-    </Grid>
         <Routes>
-            <Route path="assessmentcreation" element={<AssessmentCreation/>} />
-            <Route path="coursecreation" element={<CourseCreation/>} />
-            <Route path="gradebook" element={<GradeBook/>} />
-            <Route path="teacherprofile" element={<TeacherProfile/>} />
-            <Route path="stcommunication" element={<STCommunication/>} />
-
+      <Route path="/assessmentcreation" element={<AssessmentCreation/>} />
+      <Route path="/coursecreation" element={<CourseCreation/>} />
+      <Route path="/gradebook" element={<GradeBook/>} />
+      <Route path="/teacherprofile" element={<TeacherProfile/>} />
+      <Route path="/stcommunication" element={<STCommunication/>} />
         </Routes>
-        </Box>
+        </SMTestDashboard>
+
+        
+      </Box>
         </>
     )
 }

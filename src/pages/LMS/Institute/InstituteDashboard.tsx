@@ -6,64 +6,62 @@ import StudentDetail from "./InstituteScreens/StudentManagement/StudentDetail";
 import StudentList from "./InstituteScreens/StudentManagement/StudentList";
 import CourseList from "./InstituteScreens/Courses/CourseList";
 import Assessments from "./InstituteScreens/Courses/Assessments";
-import Quiz from "./InstituteScreens/Courses/Quiz";
 import STRegistrationControl from "./InstituteScreens/STRegistrationControl";
+import QuizList from "./InstituteScreens/Courses/QuizList";
+import SMTestDashboard from "../../Layouts/SMTestDashboard";
 
 export default function InstituteDashboard(){
 
     const pages = [
       {
-        name: "Institute Profile",
-        route: "instituteprofile",
+        text: "Institute Profile",
+        link: "instituteprofile",
         // icon: <AllInboxIcon />,
       },
       {
-        name: "Student List",
-        route: "studentlist",
+        text: "Student List",
+        link: "studentlist",
         // icon: <MessageIcon />,
       },
       {
-        name: "Course List",
-        route: "courselist",
+        text: "Course List",
+        link: "courselist",
         // icon: <Settings />,
       },
       {
-        name: "Quiz",
-        route: "quiz",
+        text: "Quiz List",
+        link: "quizlist",
       },
       {
-        name: "Assessments",
-        route: "assessments",
+        text: "Assessments",
+        link: "assessments",
       },
       {
-        name: "Registration Control",
-        route: "stregistrationcontrol",
+        text: "Registration Control",
+        link: "stregistrationcontrol",
       },
     ];
     
 
     return(
         <>
-        <Box>
+              <Box>
+        <SMTestDashboard menuItems={pages} >
 
-        <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
-        <h1>Institute Dashboard</h1>
-        <SMDashboard pages={pages} title="Institute Dashboard" onLogout={()=>{}} dashboard="institutedashboard"/>
-        
-      </Grid>
-    </Grid>
         <Routes>
-            <Route path="instituteprofile" element={<InstituteProfile/>} />
-            <Route path="studentdetail" element={<StudentDetail/>} />
-            <Route path="studentlist" element={<StudentList/>} />
-            <Route path="studentlist/:id" element={<StudentList/>} />
-            <Route path="courselist" element={<CourseList/>} />
-            <Route path="assessments" element={<Assessments/>} />
-            <Route path="quiz" element={<Quiz/>} />
-            <Route path="stregistrationcontrol" element={<STRegistrationControl/>} />
+      <Route path="/instituteprofile" element={<InstituteProfile/>} />
+      <Route path="/studentdetail" element={<StudentDetail/>} />
+      <Route path="/studentlist" element={<StudentList/>} />
+      <Route path="/studentlist/:id" element={<StudentList/>} />
+      <Route path="/courselist" element={<CourseList/>} />
+      <Route path="/assessments" element={<Assessments/>} />
+      <Route path="/quizlist" element={<QuizList/>} />
+      <Route path="/stregistrationcontrol" element={<STRegistrationControl/>} />
         </Routes>
-        </Box>
+        </SMTestDashboard>
+
+        
+      </Box>
         </>
     )
 }

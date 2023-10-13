@@ -6,7 +6,7 @@ import { fbGet } from "../../../../../config/firebase/firebase-methods";
 import SMTableContainer from "../../../../../components/table/SMTableContainer";
 import SMTableRow from "../../../../../components/table/SMTableRow";
 
-export default function CourseList() {
+export default function QuizList() {
   const [courseList, setCourseList] = useState<any[]>([]);
 
   const getCourse = () => {
@@ -30,8 +30,8 @@ export default function CourseList() {
     <Box className="d-flex align-items-center justify-content-center flex-column">
       <div>
         <div className="d-flex align-items-center justify-content-between py-2">
-          <p className="m-2 fw-bold">Course List</p>
-          <SMButton label="Add Course" onClick={() => navigate("/coursereg")} />
+          <p className="m-2 fw-bold">Quiz List</p>
+          <SMButton label="Add Quiz" onClick={() => navigate("/quizreg")} />
         </div>
         <div className="d-flex align-items-center justify-content-around">
           <SMTableContainer

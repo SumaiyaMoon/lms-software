@@ -16,11 +16,11 @@ type SMTableRowProps = {
                            <tr key={key}>
                                
                                    <td>{Id}</td>
-                                   <td>{Logo}</td>
+                                   {/* <td>{Logo}</td> */}
                                    <td>{Name}</td>
-                                   <td>{Number}</td>
-                                   <td>{Active}</td>
+                                   {/* <td>{Number}</td> */}
                                    <td>{Email}</td>
+                                   <td>{Active}</td>
                               
                            </tr>
                       

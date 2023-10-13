@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home(){
     const navigate = useNavigate();
-    
-return(
+
+ return(
     <>
     <div className="bg_img_home d-flex align-items-center justify-content-center">
 <div className="container row d-flex align-items-center justify-content-center">
@@ -20,7 +20,6 @@ return(
     </div>
 </div>
     </div>
-
     </>
 )
 }
