@@ -7,6 +7,7 @@ import CourseList from "./InstituteScreens/Courses/CourseList";
 import QuizList from "./InstituteScreens/Courses/QuizList";
 import SMDashboard from "../../Layouts/SMDashboard";
 import AssessmentList from "./InstituteScreens/Courses/AssessmentList";
+import NotFound from "../../NotFound";
 
 export default function InstituteDashboard(){
 
@@ -48,6 +49,7 @@ export default function InstituteDashboard(){
       <Route path="/courselist" element={<CourseList/>} />
       <Route path="/assessmentlist" element={<AssessmentList/>} />
       <Route path="/quizlist" element={<QuizList/>} />
+      <Route path="*" element={<NotFound/>} />
         </Routes>
         </SMDashboard>
 

@@ -13,6 +13,7 @@ import SMTeacherReg from "../../pages/Layouts/SMForms/SMTeacherReg";
 import SMInstituteReg from "../../pages/Layouts/SMForms/SMInstituteReg";
 import SMCourseReg from "../../pages/Layouts/SMForms/SMCourseReg";
 import SMQuizReg from "../../pages/Layouts/SMForms/SMQuizReg";
+import SMAssessmentReg from "../../pages/Layouts/SMForms/SMAssessmentReg";
 
 
 
@@ -32,6 +33,7 @@ export default function AppRouter() {
            <Route path="/institutereg" element={<SMInstituteReg/>} />
            <Route path="/coursereg" element={<SMCourseReg/>} />
            <Route path="/quizreg" element={<SMQuizReg/>} />
+           <Route path="/assessmentreg" element={<SMAssessmentReg/>} />
            {/* Protected Routes */}
            <Route path="admindashboard/*" element={<Protected Screen={AdminDashboard} />} />
            <Route path="institutedashboard/*" element={<Protected Screen={InstituteDashboard} />} />
