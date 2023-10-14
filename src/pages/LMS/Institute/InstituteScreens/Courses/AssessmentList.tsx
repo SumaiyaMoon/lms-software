@@ -6,14 +6,14 @@ import { fbGet } from "../../../../../config/firebase/firebase-methods";
 import SMTableContainer from "../../../../../components/table/SMTableContainer";
 import SMTableRow from "../../../../../components/table/SMTableRow";
 
-export default function QuizList() {
-  const [courseList, setCourseList] = useState<any[]>([]);
+export default function AssessmentList() {
+  const [assessmentList, setAssessmentList] = useState<any[]>([]);
 
-  const getCourse = () => {
-    fbGet("courses")
+  const getAssessment = () => {
+    fbGet("assessments")
       .then((res: any) => {
         console.log(res);
-        setCourseList([...res]);
+        setAssessmentList([...res]);
       })
       .catch((err) => {
         console.log(err);
@@ -21,7 +21,7 @@ export default function QuizList() {
   };
 
   useEffect(() => {
-    getCourse();
+    getAssessment();
   }, []);
 
   const navigate = useNavigate();
@@ -30,8 +30,8 @@ export default function QuizList() {
     <Box className="d-flex align-items-center justify-content-center flex-column">
       <div>
         <div className="d-flex align-items-center justify-content-between py-2">
-          <p className="m-2 fw-bold">Quiz List</p>
-          <SMButton label="Add Quiz" onClick={() => navigate("/quizreg")} />
+          <p className="m-2 fw-bold">assessment List</p>
+          <SMButton label="Add assessment" onClick={() => navigate("/assessmentreg")} />
         </div>
         <div className="d-flex align-items-center justify-content-around">
           <SMTableContainer
@@ -41,27 +41,27 @@ export default function QuizList() {
                 key: "id",
               },
               {
-                heading: "Course",
-                key: "courseName",
+                heading: "assessment",
+                key: "assessmentName",
               },
               {
                 heading: "Duration (weeks)",
-                key: "courseDuration",
+                key: "assessmentDuration",
               },
               {
-                heading: "Teacher",
-                key: "courseTeacher",
+                heading: "Course",
+                key: "assessmentTeacher",
               },
             ]}
           >
-            {courseList && courseList.length > 0
-              ? courseList.map((course: any, i: number) => (
+            {assessmentList && assessmentList.length > 0
+              ? assessmentList.map((assessment: any, i: number) => (
                   <SMTableRow
                     key={i}
                     Id={i + 1}
-                    Name={course.courseName || "N/A"}
-                    Email={course.courseDuration}
-                    Active={course.courseTeacher || "N/A"}
+                    Name={assessment.assessmentName || "N/A"}
+                    Email={assessment.assessmentDuration}
+                    Active={assessment.assessmentCourse || "N/A"}
                   />
                 ))
               : null}

@@ -38,19 +38,19 @@ export default function CourseList() {
             cols={[
               {
                 heading: "Id",
-                key: "id", // Update this key based on your course data
+                key: "id",
               },
               {
                 heading: "Course",
-                key: "courseName", // Update this key based on your course data
+                key: "courseName",
               },
               {
                 heading: "Duration (weeks)",
-                key: "courseDuration", // This should match the key in your student data
+                key: "courseDuration",
               },
               {
                 heading: "Teacher",
-                key: "courseTeacher", // Update this key based on your course data
+                key: "courseTeacher",
               },
             ]}
           >

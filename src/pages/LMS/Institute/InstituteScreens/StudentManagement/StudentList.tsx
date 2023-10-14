@@ -10,7 +10,7 @@ export default function InstituteList() {
   const [studentList, setStudentList] = useState<any[]>([]);
 
   const getStudent = () => {
-    fbGet("users/student") // Assuming "student" is the correct path to your student data in Firebase
+    fbGet("users/student") 
       .then((res: any) => {
         console.log(res);
         setStudentList([...res]);
@@ -43,19 +43,19 @@ export default function InstituteList() {
             cols={[
               {
                 heading: "Id",
-                key: "id", // This should match the key in your student data
+                key: "id", 
               },
               {
                 heading: "Name",
-                key: "studentName", // This should match the key in your student data
+                key: "studentName", 
               },
               {
                 heading: "Email",
-                key: "email", // This should match the key in your student data
+                key: "email", 
               },
               {
                 heading: "Active",
-                key: "isActive", // This should match the key in your student data
+                key: "isActive", 
               },
             ]}
           >
@@ -64,8 +64,8 @@ export default function InstituteList() {
       <SMTableRow
         key={i}
         Id={i + 1}
-        Name={student.studentName || "N/A"} // Handle empty studentName
-        Email={student.email || "N/A"} // Handle empty email
+        Name={student.studentName || "N/A"} 
+        Email={student.email || "N/A"} 
         Active={student.isActive ? "Yes" : "No"}
       />
     ))
