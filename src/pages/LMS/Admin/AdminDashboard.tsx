@@ -5,39 +5,31 @@ import { Box, Grid } from "@mui/material";
 import InstituteList from "./AdminScreens/InstituteList";
 import NotFound from "../../NotFound";
 
-export default function AdminDashboard(){
+export default function AdminDashboard() {
+  const pages = [
+    {
+      text: "InstituteList",
+      link: "instituteList",
+      // icon: <AllInboxIcon />,
+    },
+    {
+      text: "Activation and Payment",
+      link: "activationpayment",
+      // icon: <AllInboxIcon />,
+    },
+  ];
 
-    const pages = [
-     
-      {
-        text: "InstituteList",
-        link: "instituteList",
-        // icon: <AllInboxIcon />,
-      },
-      {
-        text: "Activation and Payment",
-        link: "activationpayment",
-        // icon: <AllInboxIcon />,
-      },
-    
-    ];
-    
-
-    return(
-        <>
-
-         <Box>
-        <SMDashboard menuItems={pages} >
-
-        <Routes>
-      <Route path="/instituteList" element={<InstituteList/>} />
-      <Route path="/activationpayment" element={<ActivationPayment/>} />   
-      <Route path="*" element={<NotFound/>} />
-        </Routes>
+  return (
+    <>
+      <Box>
+        <SMDashboard menuItems={pages} dashboardName="Admin Dashboard">
+          <Routes>
+            <Route path="/instituteList" element={<InstituteList />} />
+            <Route path="/activationpayment" element={<ActivationPayment />} />
+            {/* <Route path="*" element={<NotFound/>} /> */}
+          </Routes>
         </SMDashboard>
-
-        
       </Box>
-        </>
-    )
+    </>
+  );
 }

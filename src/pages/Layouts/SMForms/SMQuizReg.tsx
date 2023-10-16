@@ -19,30 +19,29 @@ import { useNavigate } from "react-router-dom";
 import SMInput from "../../../components/SMInput";
 import SMButton from "../../../components/SMButton";
 
-
 const drawerWidth = 240;
 
 function SMQuizReg(props: any) {
-  const { window } = props; // mui 
+  const { window } = props; // mui
   const navigate = useNavigate(); //navigation
-  const [mobileOpen, setMobileOpen] = React.useState(false); // mui 
+  const [mobileOpen, setMobileOpen] = React.useState(false); // mui
   const [model, setModel] = useState<any>({}); // complete quiz model
   const [isDisabled, setIsDisabled] = useState(false); //lock unlock
   const [quizList, setQuizList] = useState<any>({}); //list of quizes in sidebar
   const [quizQuestions, setQuizQuestions] = useState<any>([]);
   const [question, setQuestion] = useState<any>(""); // a question
   const [option, setOption] = useState<any>(""); //setting option
-  const [optionsList, setOptionsList ] = useState<any>([]); //options list of a question
+  const [optionsList, setOptionsList] = useState<any>([]); //options list of a question
   const [correctOption, setCorrectOption] = useState<any>(); // setting correct option from options list of a question
-  const [questionModel, setQuestionModel] = useState<any>({}) //  question, correctanswer, optionsList
+  const [questionModel, setQuestionModel] = useState<any>({}); //  question, correctanswer, optionsList
 
-  const fillModel = (key: string, val: string) => { 
+  const fillModel = (key: string, val: string) => {
     //filling complete model
     model[key] = val;
     setModel({ ...model });
   };
 
-  const fillQuestionModel = (key: string, val: string) => { 
+  const fillQuestionModel = (key: string, val: string) => {
     //filling complete QuestionModel
     questionModel[key] = val;
     setQuestionModel({ ...questionModel });
@@ -51,20 +50,20 @@ function SMQuizReg(props: any) {
   let SaveQuiz = () => {
     //adding quiz in database
     console.log(model);
-    fbAdd("quiz", model)
-    .then((res) => {
-      console.log(res);
-      setModel({});
-      setQuestion("");
-      setOptionsList([]);
-      setCorrectOption("");
-      setQuestionModel({});
-      setQuizQuestions([]);
-      getQuiz();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    fbAdd("quizzes", model)
+      .then((res) => {
+        console.log(res);
+        setModel({});
+        setQuestion("");
+        setOptionsList([]);
+        setCorrectOption("");
+        setQuestionModel({});
+        setQuizQuestions([]);
+        getQuiz();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const getQuiz = () => {
@@ -86,7 +85,7 @@ function SMQuizReg(props: any) {
 
   let LockQuiz = () => {
     //lock unlock
-    setIsDisabled(!isDisabled); 
+    setIsDisabled(!isDisabled);
   };
 
   let AddOptionsList = () => {
@@ -97,59 +96,64 @@ function SMQuizReg(props: any) {
 
       return updatedOptionsList;
     });
-    
-    setOption(""); 
+
+    setOption("");
   };
-  
+
   let LogOut = () => {
     //logging out
     navigate("/");
   };
 
   let AddQuizQuestioninModel = () => {
-   questionModel.question = question
-   questionModel.options = [...optionsList]
-   questionModel.answer = correctOption
-   console.log(questionModel)
-   setQuestionModel({
-    ...questionModel, 
-  });
-  setQuizQuestions([...quizQuestions, questionModel]);
-  model.quiz = quizQuestions;
-   setQuestion("");
-   setOptionsList([])
-   setCorrectOption("")
+    questionModel.question = question;
+    questionModel.options = [...optionsList];
+    questionModel.answer = correctOption;
+    console.log(questionModel);
+    setQuestionModel({
+      ...questionModel,
+    });
+    setQuizQuestions([...quizQuestions, questionModel]);
+    model.quiz = quizQuestions;
+    setQuestion("");
+    setOptionsList([]);
+    setCorrectOption("");
   };
-  
-  
-  
-
 
   const handleDrawerToggle = () => {
     // mui handling
     setMobileOpen(!mobileOpen);
   };
 
-
   const drawer = (
     //sidebar mui
     <div>
       <div className="container d-flex align-items-center justify-content-center">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJFiKHbkBQTYhaU1x1TGreeVViDrWp3pPQEf-zcX9Smb80kGgEUkTPeGp95adj2PrIYSI&usqp=CAU" className="rounded-circle w-50 m-5" />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJFiKHbkBQTYhaU1x1TGreeVViDrWp3pPQEf-zcX9Smb80kGgEUkTPeGp95adj2PrIYSI&usqp=CAU"
+          className="rounded-circle w-50 m-5"
+        />
       </div>
 
-      <List> 
+      <List>
         {/* quizList rendering list of all quiz names after getting from getQuiz(); */}
-            {quizList &&
-            quizList.length > 0 &&
-            quizList.map((x: any) => (
-          <ListItem key={x.id}>
+        {quizList &&
+          quizList.length > 0 &&
+          quizList.map((x: any) => (
+            <ListItem key={x.id}>
               <ListItemText primary={x.quizname} />
-          </ListItem>
-        ))}
+            </ListItem>
+          ))}
       </List>
       <div className="text-center">
-        <Button className='position-absolute bottom-0 start-50 translate-middle-x mb-3' type="button" onClick={LogOut} variant='contained'>Log Out</Button>
+        <Button
+          className="position-absolute bottom-0 start-50 translate-middle-x mb-3"
+          type="button"
+          onClick={LogOut}
+          variant="contained"
+        >
+          Log Out
+        </Button>
       </div>
     </div>
   );
@@ -234,11 +238,7 @@ function SMQuizReg(props: any) {
           <div className="row">
             <div className="col-6 text-start">Quiz App Admin</div>
             <div className="col-6 text-end">
-              <SMButton
-                type={"button"}
-                label={"Save"}
-                onClick={SaveQuiz}
-              />
+              <SMButton type={"button"} label={"Save"} onClick={SaveQuiz} />
             </div>
           </div>
           <div className="row m-2 p-2">
@@ -263,7 +263,6 @@ function SMQuizReg(props: any) {
               />
             </div>
             <div className="col-3 m-2 ">
-              
               <SMInput
                 value={model.secretkey || " "}
                 onChange={(e: any) => fillModel("secretkey", e.target.value)}
@@ -296,33 +295,32 @@ function SMQuizReg(props: any) {
             </div>
           </div>
           <div>
-          <SMButton
-           type="button"
-           onClick={LockQuiz}
-           label={isDisabled ? "Unlock Quiz" : "Lock Quiz"}
-            />  
+            <SMButton
+              type="button"
+              onClick={LockQuiz}
+              label={isDisabled ? "Unlock Quiz" : "Lock Quiz"}
+            />
           </div>
           <div>
             <SMInput
-               value={question}
-               onChange={(e: any) => setQuestion(e.target.value)} // Make sure onChange is set to update the state
-               name="option"
-               label="Question"
-               type="text"
-               disabled={!isDisabled} // Check if isDisabled is set to true
+              value={question}
+              onChange={(e: any) => setQuestion(e.target.value)} // Make sure onChange is set to update the state
+              name="option"
+              label="Question"
+              type="text"
+              disabled={!isDisabled} // Check if isDisabled is set to true
             />
           </div>
           <div className="row">
             <div className="col-8">
-            <SMInput
-  value={option}
-  onChange={(e: any) => setOption(e.target.value)} // Make sure onChange is set to update the state
-  name="option"
-  label="Options Here"
-  type="text"
-  disabled={!isDisabled} // Check if isDisabled is set to true
-/>
-
+              <SMInput
+                value={option}
+                onChange={(e: any) => setOption(e.target.value)} // Make sure onChange is set to update the state
+                name="option"
+                label="Options Here"
+                type="text"
+                disabled={!isDisabled} // Check if isDisabled is set to true
+              />
             </div>
             <div className="col-2 text-center mt-3">
               <SMButton
@@ -334,69 +332,72 @@ function SMQuizReg(props: any) {
           </div>
           <div className="row">
             <div className="col-6">
-            <ul id="RenderList" className="list-unstyled">
-  {optionsList.map((option: any, index: any) => (
-    <li
-      key={index} // Provide a unique key
-      onClick={() => setCorrectOption(option)}
-      className="m-2 p-2 border bg-info-subtle"
-    >
-      {option}
-    </li>
-  ))}
-</ul>
-
-
+              <ul id="RenderList" className="list-unstyled">
+                {optionsList.map((option: any, index: any) => (
+                  <li
+                    key={index} // Provide a unique key
+                    onClick={() => setCorrectOption(option)}
+                    className="m-2 p-2 border bg-info-subtle"
+                  >
+                    {option}
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="col-3 m-5">
-            {correctOption && (
-  <TextField
-    fullWidth={true}
-    id="outlined-disabled"
-    disabled
-    label='Correct Option'
-    variant="outlined"
-    value={correctOption} // Set the value to questionModel.answer, or an empty string if it's not available
-    onChange={(e: any) => { fillQuestionModel("answer", e.target.value) }}
-  />
-)}
+              {correctOption && (
+                <TextField
+                  fullWidth={true}
+                  id="outlined-disabled"
+                  disabled
+                  label="Correct Option"
+                  variant="outlined"
+                  value={correctOption} // Set the value to questionModel.answer, or an empty string if it's not available
+                  onChange={(e: any) => {
+                    fillQuestionModel("answer", e.target.value);
+                  }}
+                />
+              )}
             </div>
           </div>
           <div>
-
-          <button className="btn btn-info p-2" onClick={() => { AddQuizQuestioninModel() }}>Add Question</button>
-         
+            <button
+              className="btn btn-info p-2"
+              onClick={() => {
+                AddQuizQuestioninModel();
+              }}
+            >
+              Add Question
+            </button>
           </div>
-        
+
           <div>
-          <div>
-  {/* Render questions from quizQuestions array */}
-  {quizQuestions && quizQuestions.length> 0 && quizQuestions.map((questionData: any, index: any) => (
-    <Paper key={index}>
-      <h4>Question {index + 1}: {questionData.question}</h4>
-      <p>Options:</p>
-      <ul>
-        {questionData.options.map((option: any, optionIndex: any) => (
-          <li key={optionIndex}>{option}</li>
-        ))}
-      </ul>
-      <p>Correct Answer: {questionData.answer}</p>
-    </Paper>
-  ))}
-</div>
-
-
-
-</div>
-
+            <div>
+              {/* Render questions from quizQuestions array */}
+              {quizQuestions &&
+                quizQuestions.length > 0 &&
+                quizQuestions.map((questionData: any, index: any) => (
+                  <Paper key={index}>
+                    <h4>
+                      Question {index + 1}: {questionData.question}
+                    </h4>
+                    <p>Options:</p>
+                    <ul>
+                      {questionData.options.map(
+                        (option: any, optionIndex: any) => (
+                          <li key={optionIndex}>{option}</li>
+                        )
+                      )}
+                    </ul>
+                    <p>Correct Answer: {questionData.answer}</p>
+                  </Paper>
+                ))}
+            </div>
+          </div>
         </div>
-
-    
-
       </Box>
     </Box>
   );
-  
 }
 
 SMQuizReg.propTypes = {

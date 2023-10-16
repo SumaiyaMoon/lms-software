@@ -16,41 +16,42 @@ import Typography from "@mui/material/Typography";
 import { TextField, Button, Paper } from "@mui/material";
 import { Routes, useNavigate } from "react-router-dom";
 
-
 const drawerWidth = 240;
 interface SMDashboardProps {
   window?: () => any;
   children: ReactNode;
   menuItems: { text: string; link: string }[];
+  dashboardName: string;
 }
 
 export default function SMDashboard(props: SMDashboardProps) {
-  const { window, children, menuItems  } = props; // mui 
-  const [mobileOpen, setMobileOpen] = React.useState(false); // mui 
-const navigate = useNavigate();
+  const { window, children, menuItems, dashboardName } = props; // mui
+  const [mobileOpen, setMobileOpen] = React.useState(false); // mui
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     // mui handling
     setMobileOpen(!mobileOpen);
   };
 
-
   const drawer = (
     //sidebar mui
     <div>
       <div className="container d-flex align-items-center justify-content-start gap-2">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJFiKHbkBQTYhaU1x1TGreeVViDrWp3pPQEf-zcX9Smb80kGgEUkTPeGp95adj2PrIYSI&usqp=CAU" className="rounded-circle w-25 m-1 p-1" />
-      <Typography>User Name</Typography>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJFiKHbkBQTYhaU1x1TGreeVViDrWp3pPQEf-zcX9Smb80kGgEUkTPeGp95adj2PrIYSI&usqp=CAU"
+          className="rounded-circle w-25 m-1 p-1"
+        />
+        <Typography>User Name</Typography>
       </div>
-<Divider/>
-      <List> 
-      {menuItems.map((menuItem: any, index: any) => (
+      <Divider />
+      <List>
+        {menuItems.map((menuItem: any, index: any) => (
           <ListItem key={index} onClick={() => navigate(menuItem.link)}>
             <ListItemText primary={menuItem.text} />
           </ListItem>
         ))}
       </List>
-      
     </div>
   );
 
@@ -77,16 +78,22 @@ const navigate = useNavigate();
           >
             <MenuIcon />
           </IconButton>
-          
 
           <Typography variant="h6" noWrap component="div">
-            Admin Panel
+            {dashboardName}
           </Typography>
 
-          
-        <Button className='ms-auto' type="button" onClick={()=>{navigate("/login")}} variant='contained' color="error">Log Out</Button>
-      
-                
+          <Button
+            className="ms-auto"
+            type="button"
+            onClick={() => {
+              navigate("/login");
+            }}
+            variant="contained"
+            color="error"
+          >
+            Log Out
+          </Button>
         </Toolbar>
       </AppBar>
       <Box
@@ -137,17 +144,8 @@ const navigate = useNavigate();
       >
         <Toolbar />
 
-        
-
-   
         {children}
-    
-
-   
-
       </Box>
     </Box>
   );
-  
 }
-

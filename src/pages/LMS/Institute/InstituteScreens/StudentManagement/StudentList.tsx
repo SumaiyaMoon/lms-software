@@ -10,7 +10,7 @@ export default function InstituteList() {
   const [studentList, setStudentList] = useState<any[]>([]);
 
   const getStudent = () => {
-    fbGet("users/student") 
+    fbGet("users")
       .then((res: any) => {
         console.log(res);
         setStudentList([...res]);
@@ -43,35 +43,39 @@ export default function InstituteList() {
             cols={[
               {
                 heading: "Id",
-                key: "id", 
+                key: "id",
               },
               {
                 heading: "Name",
-                key: "studentName", 
+                key: "studentName",
               },
               {
                 heading: "Email",
-                key: "email", 
+                key: "email",
               },
               {
                 heading: "Active",
-                key: "isActive", 
+                key: "isActive",
               },
             ]}
           >
-           {studentList && studentList.length > 0
-  ? studentList.map((student: any, i: number) => (
-      <SMTableRow
-        key={i}
-        Id={i + 1}
-        Name={student.studentName || "N/A"} 
-        Email={student.email || "N/A"} 
-        Active={student.isActive ? "Yes" : "No"}
-      />
-    ))
-  : null}
+            {studentList && studentList.length > 0
+              ? studentList
+                  .filter(
+                    (student) =>
+                      student.role && student.role.toLowerCase() === "student"
+                  )
+                  .map((student: any, i: number) => (
+                    <SMTableRow
+                      key={i}
+                      Id={i + 1}
+                      Name={student.studentName || "N/A"}
+                      Email={student.email || "N/A"}
+                      Active={student.isActive ? "Yes" : "No"}
+                    />
+                  ))
+              : null}
           </SMTableContainer>
-          
         </div>
       </div>
     </Box>

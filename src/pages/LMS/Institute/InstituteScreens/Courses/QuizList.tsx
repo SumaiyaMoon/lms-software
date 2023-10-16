@@ -7,13 +7,13 @@ import SMTableContainer from "../../../../../components/table/SMTableContainer";
 import SMTableRow from "../../../../../components/table/SMTableRow";
 
 export default function QuizList() {
-  const [courseList, setCourseList] = useState<any[]>([]);
+  const [quizList, setQuizList] = useState<any[]>([]);
 
-  const getCourse = () => {
-    fbGet("courses")
+  const getquiz = () => {
+    fbGet("quizzes")
       .then((res: any) => {
         console.log(res);
-        setCourseList([...res]);
+        setQuizList([...res]);
       })
       .catch((err) => {
         console.log(err);
@@ -21,7 +21,7 @@ export default function QuizList() {
   };
 
   useEffect(() => {
-    getCourse();
+    getquiz();
   }, []);
 
   const navigate = useNavigate();
@@ -41,27 +41,27 @@ export default function QuizList() {
                 key: "id",
               },
               {
-                heading: "Course",
-                key: "courseName",
+                heading: "Quiz",
+                key: "quizname",
               },
               {
-                heading: "Duration (weeks)",
-                key: "courseDuration",
+                heading: "Duration (min)",
+                key: "duration",
               },
               {
-                heading: "Teacher",
-                key: "courseTeacher",
+                heading: "status",
+                key: "isOpen",
               },
             ]}
           >
-            {courseList && courseList.length > 0
-              ? courseList.map((course: any, i: number) => (
+            {quizList && quizList.length > 0
+              ? quizList.map((quiz: any, i: number) => (
                   <SMTableRow
                     key={i}
                     Id={i + 1}
-                    Name={course.courseName || "N/A"}
-                    Email={course.courseDuration}
-                    Active={course.courseTeacher || "N/A"}
+                    Name={quiz.quizname || "N/A"}
+                    Email={quiz.duration}
+                    Active={quiz.isOpen || "N/A"}
                   />
                 ))
               : null}

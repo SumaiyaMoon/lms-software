@@ -7,121 +7,111 @@ import { Typography, Box, Paper, Grid } from "@mui/material";
 
 // import {useDispatch} from 'react-redux'
 
-
 export default function SMLogin() {
   const [model, setModel] = useState<any>({});
-//   const  dispatch = useDispatch();
+  //   const  dispatch = useDispatch();
 
   const fillModel = (key: string, val: any) => {
     model[key] = val;
     setModel({ ...model });
   };
-const userRole = "student" || "institute" || "admin" 
-   const navigate = useNavigate();
+  // const userRole = "student" || "institute" || "admin";
+  const navigate = useNavigate();
   let LoginUser = () => {
     console.log(model);
-    fbLogin(model, userRole)
+    fbLogin(model)
       .then((res: any) => {
         console.log(res);
         // dispatch(add({...res}))
-        
-if(model.role == ("student" || "Student")){
 
-  navigate("/studentdashboard")
-
-}else if(model.role == ("teacher" || "Teacher")){
-
-  navigate("/teacherdashboard")
-
-}
-else if(model.role == ("institute" || "Institute")){
-
-  navigate("/institutedashboard")
-  
-}else if(model.role == ("admin" || "Admin")){
-  navigate("/admindashboard")
-
-}
-else{
-  navigate("/signup")
-  alert("Please Signup First")
-}
-})
+        if (model.role == ("student" || "Student")) {
+          navigate("/studentdashboard");
+        } else if (model.role == ("teacher" || "Teacher")) {
+          navigate("/teacherdashboard");
+        } else if (model.role == ("institute" || "Institute")) {
+          navigate("/institutedashboard");
+        } else if (model.role == ("admin" || "Admin")) {
+          navigate("/admindashboard");
+        } else {
+          navigate("/signup");
+          alert("Please Signup First");
+        }
+      })
       .catch((err) => {
         console.log(err);
       });
   };
 
-useEffect(()=>{
-fbAuth().then((res) =>{
-console.log(res);
-}).catch((err)=>{
-  console.log(err)
-})
-},[])
+  useEffect(() => {
+    fbAuth()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <Box
-    className="bg_img_login"
-    sx={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-    }}
-  >
-    <Paper className="paperColor" elevation={3} sx={{ p: 4, maxWidth: 400 }}>
-      <Typography variant="h6" className="fw-bold" gutterBottom>
-        Login
-      </Typography>
-      <form>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <SMInput
-              value={model.email}
-              name="email"
-              label="Email"
-              type="email"
-              onChange={(e: any) => fillModel("email", e.target.value)}
-              className="py-2"
-            />
+      className="bg_img_login"
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <Paper className="paperColor" elevation={3} sx={{ p: 4, maxWidth: 400 }}>
+        <Typography variant="h6" className="fw-bold" gutterBottom>
+          Login
+        </Typography>
+        <form>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <SMInput
+                value={model.email}
+                name="email"
+                label="Email"
+                type="email"
+                onChange={(e: any) => fillModel("email", e.target.value)}
+                className="py-2"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <SMInput
+                value={model.password}
+                name="password"
+                label="Password"
+                type="password"
+                onChange={(e: any) => fillModel("password", e.target.value)}
+                className="py-2"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <SMInput
+                value={model.role}
+                name="role"
+                label="Role"
+                type="text"
+                onChange={(e: any) => fillModel("role", e.target.value)}
+                className="py-2"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <SMButton
+                type="button"
+                onClick={LoginUser}
+                label="Login"
+                className="py-2"
+              />
+              <Typography className="py-2">
+                Don't have an account?
+                <Link to="/SignUp">SingUp</Link>
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <SMInput
-              value={model.password}
-              name="password"
-              label="Password"
-              type="password"
-              onChange={(e: any) => fillModel("password", e.target.value)}
-              className="py-2"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <SMInput
-              value={model.role}
-              name="role"
-              label="Role"
-              type="text"
-              onChange={(e: any) => fillModel("role", e.target.value)}
-              className="py-2"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <SMButton
-              type="button"
-              onClick={LoginUser}
-              label="Login"
-              className="py-2"
-            />
-            <Typography className="py-2">
-              Don't have an account?
-              <Link to="/SignUp" >
-                SingUp
-              </Link>
-            </Typography>
-          </Grid>
-        </Grid>
-      </form>
-    </Paper>
-  </Box>
+        </form>
+      </Paper>
+    </Box>
   );
 }
