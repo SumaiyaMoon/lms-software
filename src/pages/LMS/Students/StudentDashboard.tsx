@@ -6,6 +6,8 @@ import StudentProfile from "./StudentScreens/StudentProfile";
 import EnrolledCourses from "./StudentScreens/EnrolledCourses";
 import StudentResult from "./StudentScreens/StudentResult";
 import NotFound from "../../NotFound";
+import QuizList from "./StudentScreens/QuizList";
+import Quiz from "./StudentScreens/Quiz";
 
 export default function StudentDashboard() {
   const pages = [
@@ -25,6 +27,10 @@ export default function StudentDashboard() {
       text: "Communication",
       link: "stcommunication",
     },
+    {
+      text: "Quizzes",
+      link: "quizlist",
+    },
   ];
 
   return (
@@ -36,6 +42,9 @@ export default function StudentDashboard() {
             <Route path="/studentresult" element={<StudentResult />} />
             <Route path="/studentprofile" element={<StudentProfile />} />
             <Route path="/stcommunication" element={<STCommunication />} />
+            <Route path="/quizlist" element={<QuizList />} />
+            <Route path="/quizlist/:id" element={<Quiz />} />
+
             {/* <Route path="*" element={<NotFound/>} /> */}
           </Routes>
         </SMDashboard>

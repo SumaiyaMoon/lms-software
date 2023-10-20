@@ -31,7 +31,10 @@ export default function AssessmentList() {
       <div>
         <div className="d-flex align-items-center justify-content-between py-2">
           <p className="m-2 fw-bold">assessment List</p>
-          <SMButton label="Add assessment" onClick={() => navigate("/assessmentreg")} />
+          <SMButton
+            label="Add assessment"
+            onClick={() => navigate("/assessmentreg")}
+          />
         </div>
         <div className="d-flex align-items-center justify-content-around">
           <SMTableContainer
@@ -57,7 +60,7 @@ export default function AssessmentList() {
             {assessmentList && assessmentList.length > 0
               ? assessmentList.map((assessment: any, i: number) => (
                   <SMTableRow
-                    key={i}
+                    keyIndex={i}
                     Id={i + 1}
                     Name={assessment.assessmentName || "N/A"}
                     Email={assessment.assessmentDuration}

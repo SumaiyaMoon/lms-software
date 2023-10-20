@@ -39,9 +39,8 @@ export default function InstituteDashboard() {
         <SMDashboard menuItems={pages} dashboardName="Institute Dashboard">
           <Routes>
             <Route path="/instituteprofile" element={<InstituteProfile />} />
-            <Route path="/studentdetail" element={<StudentDetail />} />
             <Route path="/studentlist" element={<StudentList />} />
-            <Route path="/studentlist/:id" element={<StudentList />} />
+            <Route path="/studentlist/:id" element={<StudentDetail />} />
             <Route path="/courselist" element={<CourseList />} />
             <Route path="/assessmentlist" element={<AssessmentList />} />
             <Route path="/quizlist" element={<QuizList />} />

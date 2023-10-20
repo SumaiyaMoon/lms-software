@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fbGet, fbGetByID } from "../../../../config/firebase/firebase-methods";
 
-export default function InstituteProfile() {
+export default function InstituteDetail() {
   const [instituteDetail, setInstituteDetail] = useState<any>({});
   const { id } = useParams();
 
@@ -26,7 +26,7 @@ export default function InstituteProfile() {
   return (
     <>
       <Box>
-        {/* <div key={id}>
+        <div key={id}>
           <img src={instituteDetail.instituteLogo} alt={"Logo"} />
           <h1>Institute Name: {instituteDetail.instituteName}</h1>
           <h1>Institute Short Name: {instituteDetail.instituteShortName}</h1>
@@ -43,8 +43,7 @@ export default function InstituteProfile() {
           <p>Contact: {instituteDetail.instituteContact}</p>
           <p>Owner's Contact: {instituteDetail.instituteOwnerContact}</p>
           <p>Owner's Email: {instituteDetail.instituteOwnerEmail}</p>
-        </div> */}
-        <h1>Institute Profile</h1>
+        </div>
       </Box>
     </>
   );

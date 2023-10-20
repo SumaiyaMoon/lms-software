@@ -101,4 +101,15 @@ export let fbAuth = () => {
 
 export let fbDelete = () => {};
 export let fbEdit = () => {};
-export let fbGetById = () => {};
+export let fbGetByID = (nodeName: string, id: any) => {
+  return new Promise((resolve, reject) => {
+    const reference = ref(db, `${nodeName}/${id}`);
+    onValue(reference, (data) => {
+      if (data.exists()) {
+        resolve(data.val());
+      } else {
+        reject("Data not found for the specified ID");
+      }
+    });
+  });
+};

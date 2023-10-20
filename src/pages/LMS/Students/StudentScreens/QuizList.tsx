@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import { useState, useEffect } from "react";
-import SMButton from "../../../../../components/SMButton";
+import SMButton from "../../../../components/SMButton";
 import { useNavigate } from "react-router-dom";
-import { fbGet } from "../../../../../config/firebase/firebase-methods";
-import SMTableContainer from "../../../../../components/table/SMTableContainer";
-import SMTableRow from "../../../../../components/table/SMTableRow";
+import { fbGet } from "../../../../config/firebase/firebase-methods";
+import SMTableContainer from "../../../../components/table/SMTableContainer";
+import SMTableRow from "../../../../components/table/SMTableRow";
 
 export default function QuizList() {
   const [quizList, setQuizList] = useState<any[]>([]);
@@ -31,7 +31,6 @@ export default function QuizList() {
       <div>
         <div className="d-flex align-items-center justify-content-between py-2">
           <p className="m-2 fw-bold">Quiz List</p>
-          <SMButton label="Add Quiz" onClick={() => navigate("/quizreg")} />
         </div>
         <div className="d-flex align-items-center justify-content-around">
           <SMTableContainer
@@ -57,7 +56,10 @@ export default function QuizList() {
             {quizList && quizList.length > 0
               ? quizList.map((quiz: any, i: number) => (
                   <SMTableRow
-                    keyIndex={i}
+                    onClick={() => {
+                      navigate(`${quiz.id}`);
+                    }}
+                    keyIndex={quiz.id}
                     Id={i + 1}
                     Name={quiz.quizname || "N/A"}
                     Email={quiz.duration}

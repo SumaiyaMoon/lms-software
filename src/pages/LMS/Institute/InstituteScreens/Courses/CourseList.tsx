@@ -57,7 +57,7 @@ export default function CourseList() {
             {courseList && courseList.length > 0
               ? courseList.map((course: any, i: number) => (
                   <SMTableRow
-                    key={i}
+                    keyIndex={i}
                     Id={i + 1}
                     Name={course.courseName || "N/A"}
                     Email={course.courseDuration}

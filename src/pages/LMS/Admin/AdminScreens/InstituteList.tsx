@@ -85,11 +85,14 @@ export default function InstituteList() {
                     .map((institute: any, i: number) => (
                       // if (role == "institute" || "Institute") {}
                       <SMTableRow
-                        key={i}
+                        keyIndex={i}
                         Id={i + 1}
                         Name={institute.instituteName || "N/A"} // Handle empty instituteName
                         Email={institute.email || "N/A"} // Handle empty email
                         Active={institute.isActive ? "Yes" : "No"}
+                        onClick={() => {
+                          navigate(`${institute.id}`);
+                        }}
                       />
                     ))
                 : null}

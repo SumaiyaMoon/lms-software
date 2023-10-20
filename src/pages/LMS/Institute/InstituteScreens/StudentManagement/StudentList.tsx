@@ -67,11 +67,14 @@ export default function InstituteList() {
                   )
                   .map((student: any, i: number) => (
                     <SMTableRow
-                      key={i}
+                      keyIndex={i}
                       Id={i + 1}
                       Name={student.studentName || "N/A"}
                       Email={student.email || "N/A"}
                       Active={student.isActive ? "Yes" : "No"}
+                      onClick={() => {
+                        navigate(`${student.id}`);
+                      }}
                     />
                   ))
               : null}
